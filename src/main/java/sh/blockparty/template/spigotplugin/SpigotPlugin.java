@@ -1,18 +1,40 @@
 package sh.blockparty.template.spigotplugin;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import java.io.File;
+import java.io.IOException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.configuration.InvalidConfigurationException;
+
 
 public class SpigotPlugin extends JavaPlugin {
-    @Override
-    public void onDisable() {
-        // Don't log disabling, Spigot does that for you automatically!
+    private File configFile;
+    private FileConfiguration config;
+
+    public FileConfiguration getConfig() {
+        return this.config;
     }
 
     @Override
     public void onEnable() {
-        // Don't log enabling, Spigot does that for you automatically!
-
-        // Commands enabled with following method must have entries in plugin.yml
+        createConfig();
         getCommand("mpx").setExecutor(new MpxCommand(this));
     }
+
+    private void createConfig() {
+        configFile = new File(getDataFolder(), "config.yml");
+        if (!configFile.exists()) {
+            configFile.getParentFile().mkdirs();
+            saveResource("config.yml", false);
+         }
+
+        config = new YamlConfiguration();
+        try {
+            config.load(configFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

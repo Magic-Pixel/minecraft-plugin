@@ -1,22 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>sh.blockparty.template</groupId>
-    <artifactId>Minecraft_SLP</artifactId>
-    <!-- Version is used in plugin.yml -->
+    <groupId>xyz.magicpixel</groupId>
+    <artifactId>MagicPixel</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-
-    <!-- Plugin Information -->
-    <!-- Name, Description, and URL are used in plugin.yml -->
-    <name>Minecraft_SLP</name>
+    <name>MagicPixel</name>
     <description>SLP </description>
-    <url>http://blockparty.sh/project/slpplugin</url>
+    <url>https://magicpixel.xyz</url>
 
     <licenses>
         <license>
             <name>Zlib License</name>
             <url>http://opensource.org/licenses/Zlib</url>
-            <comments>Copyright (c) 2020 Blockparty
+            <comments>Copyright (c) 2020 Magic Pixel
             This software is provided 'as-is', without any express or implied
             warranty. In no event will the authors be held liable for any damages
             arising from the use of this software.
@@ -48,7 +44,7 @@
     <properties>
         <!--  Author and MainClass are used in plugin.yml -->
         <author>Blockparty</author>
-        <mainClass>sh.blockparty.template.spigotplugin.SpigotPlugin</mainClass>
+        <mainClass>xyz.magicpixel.spigotplugin.SpigotPlugin</mainClass>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

@@ -1,3 +1,2 @@
-apiurl: http://127.0.0.1:8222/api
-apikey: password
-cmd: mpx
+apiurl: https://api.magicpixel.xyz
+apikey: setme

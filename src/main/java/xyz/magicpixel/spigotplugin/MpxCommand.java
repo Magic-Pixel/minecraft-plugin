@@ -1,10 +1,11 @@
-package sh.blockparty.template.spigotplugin;
+package xyz.magicpixel.spigotplugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -20,7 +21,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.bukkit.configuration.InvalidConfigurationException;
 
 
 public class MpxCommand implements CommandExecutor {
@@ -29,11 +29,16 @@ public class MpxCommand implements CommandExecutor {
     String apiHost;
 
 
-    public MpxCommand(SpigotPlugin plugin) {
+    public MpxCommand(SpigotPlugin plugin) throws InvalidConfigurationException {
         this.plugin = plugin;
         FileConfiguration config = plugin.getConfig();
         this.apiKey = config.getString("apikey");
         this.apiHost = config.getString("apiurl").replaceAll("/$", "");
+
+        if (this.apiKey.equals("setme")) {
+            plugin.getLogger().info("You must set apikey in plugins/MagicPixel/config.yml");
+            throw new InvalidConfigurationException("You must set apikey in plugins/MagicPixel/config.yml");
+       }
     }
 
     // converts non-dashed uuids to dashed
@@ -45,7 +50,12 @@ public class MpxCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
+    public boolean onCommand(
+        final CommandSender sender,
+        final Command cmd,
+        final String label,
+        final String[] args
+    ) {
         // TODO is this needed?
         if (! cmd.getName().toLowerCase().equals("mpx")) {
             return false;

@@ -1,4 +1,4 @@
-package sh.blockparty.template.spigotplugin;
+package xyz.magicpixel.spigotplugin;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
@@ -19,7 +19,12 @@ public class SpigotPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         createConfig();
-        getCommand("mpx").setExecutor(new MpxCommand(this));
+
+        try {
+            getCommand("mpx").setExecutor(new MpxCommand(this));
+        } catch (InvalidConfigurationException e) {
+            getServer().getPluginManager().disablePlugin(this);
+        }
     }
 
     private void createConfig() {
@@ -36,5 +41,4 @@ public class SpigotPlugin extends JavaPlugin {
             e.printStackTrace();
         }
     }
-
 }

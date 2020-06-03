@@ -57,9 +57,14 @@ public class MpxCommand implements CommandExecutor {
         final String[] args
     ) {
         // TODO is this needed?
-        if (! cmd.getName().toLowerCase().equals("mpx")) {
+        if (! cmd.getName().equalsIgnoreCase("mpx")) {
             return false;
         }
+
+        if (! sender.hasPermission("mpx.interact")) {
+            return false;
+        }
+
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, new Runnable() {
             @Override

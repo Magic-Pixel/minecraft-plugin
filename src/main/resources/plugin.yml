@@ -1,3 +1,4 @@
+api-version: 1.13
 name: ${name}
 version: ${version}
 description: ${description}
@@ -8,9 +9,16 @@ main: ${mainClass}
 
 commands:
     mpx:
-        description: An example command
-        permission: minecraft_slp.mpx
+        description: Magic Pixel main command
+        permission: mpx.interact
         permission-message: You do not have permission to use this command.
         usage: /<command>
 
-permissions: {}
+permissions:
+    mpx.*:
+        description: Gives access to all mpx commands
+        children:
+            mpx.interact: true
+    mpx.interact:
+        description: Allow user to use mpx command
+        default: true

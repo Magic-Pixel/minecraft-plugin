@@ -36,7 +36,7 @@ public class MpxCommand implements CommandExecutor {
         this.apiHost = config.getString("apiurl").replaceAll("/$", "");
 
         if (this.apiKey.equals("setme")) {
-            plugin.getLogger().info("You must set apikey in plugins/MagicPixel/config.yml");
+            plugin.getLogger().warning("You must set apikey in plugins/MagicPixel/config.yml");
             throw new InvalidConfigurationException("You must set apikey in plugins/MagicPixel/config.yml");
        }
     }
